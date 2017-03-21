@@ -1,13 +1,17 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.Node;
 import util.Hibernate;
 
 public class NodeDao extends Hibernate {
 
-	NodeDao() {
+	public NodeDao() {
 		super();
 	}
 
@@ -50,5 +54,18 @@ public class NodeDao extends Hibernate {
 			entityManager.close();
 		}
 		return node;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Node> getAllNodes(){
+		ArrayList<Node> nodes = null;
+		EntityManager entityManager = Hibernate.getEntityManager();
+		try {
+		    Query query = entityManager.createQuery("from " + Node.class.getName());
+		    nodes = (ArrayList<Node>) query.getResultList();
+		} finally {
+			entityManager.close();
+		}
+		return nodes;
 	}
 }

@@ -9,26 +9,26 @@ import model.Node;
 
 public class NodeDaoTest {
 
-	Node tree = null;
+	Node node = null;
 	
 	@Before
 	public void setUp(){
-		this.tree = new Node();
-		this.tree.setCode(001);
-		this.tree.setDescription("Casa");
-		this.tree.setNote("Nó criado para casa");
-		this.tree.setParent(null);
+		this.node = new Node();
+		this.node.setCode(001);
+		this.node.setDescription("Casa");
+		this.node.setNote("Nó criado para casa");
+		this.node.setParent(null);
 	}
 	
 	@Test
 	public void saveTest() {
-		this.tree.setId(new NodeDao().save(this.tree));
-		Assert.assertTrue(this.tree.getId() != null);
+		this.node.setId(new NodeDao().save(this.node));
+		Assert.assertTrue(this.node.getId() != null);
 	}
 	
 	@After
 	public void deleteTest(){
-		Assert.assertTrue(new NodeDao().delete(this.tree));
+		Assert.assertTrue(new NodeDao().delete(this.node));
 	}
 
 }

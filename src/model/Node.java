@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.Gson;
+
 @Entity
-@Table(name = "Node")
+@Table(name = "node")
 public class Node {
 
 	@Id @GeneratedValue
@@ -63,5 +65,13 @@ public class Node {
 
 	public void setParent(Long parent) {
 		this.parent = parent;
+	}
+	
+	public String toJson() {
+		return new Gson().toJson(this);
+	}
+	
+	public String toString(){
+		return getCode()+"\n"+getDescription()+"\n"+getNote();
 	}
 }
